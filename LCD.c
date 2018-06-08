@@ -19,7 +19,7 @@
 static u8 cursorPosition = 0x80;		// first row
 
 // Private Function
- void OutCmd(u8 command) {
+static void OutCmd(u8 command) {
 	// send Higher nibble
 	LCD_DATA_PORT = command & 0xF0;
 	LCD_CRL_PORT &= ~(E + RS + RW);	// E=0, R/W=0, RS=0
@@ -130,4 +130,13 @@ void LCD_OutString (char *str) {
 		LCD_OutChar(*str);
 		str++;
 	}
+}
+void LCD_OutUDec(u16 n)
+{
+	if (n>=10)
+	{
+		LCD_OutUDec(n/10);
+		n=n%10;
+	}
+	LCD_OutChar(n+'0');
 }

@@ -24,5 +24,6 @@ void LCD_OutChar(u8 letter);
 void LCD_Clear(void);
 
 void LCD_OutString (char *str);
+void LCD_OutUDec(u16 n);
 
 #endif /* LCD_H_ */
